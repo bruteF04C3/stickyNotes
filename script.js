@@ -5,20 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
 })
 
 function initNoteArea() {
-    const body = document.getElementsByTagName('body')[0];
-    const existingMarkup = body.innerHTML;
-    body.innerHTML = '';
+    const BODY = document.getElementsByTagName('body')[0];
+    const EXISTING_MARKUP = BODY.innerHTML;
+    BODY.innerHTML = '';
     // onclick for testing only
-    body.innerHTML = `<div id="_vstickynotes-main" tabindex="-1" onclick="hideAllNotes()" oncontextmenu="getCursorCoords(event)">
-        ${existingMarkup}
+    BODY.innerHTML = `<div id="_vstickynotes-main" tabindex="-1" onclick="hideAllNotes()" oncontextmenu="getCursorCoords(event)">
+        ${EXISTING_MARKUP}
     </div>`;
 }
 
 function getCursorCoords(event) {
     event.preventDefault();
-    const coords = [event.screenX, event.screenY]
+    const COORDS = [event.screenX, event.screenY]
     // renderCard(coords)
-    constructCard(coords);
+    constructCard(COORDS);
 
 }
 
@@ -52,8 +52,8 @@ function showNotes(card) {
 }
 
 function hideAllNotes() {
-    const notes = document.querySelectorAll('.card');
-    notes.forEach((item) => {
+    const NOTES = document.querySelectorAll('.card');
+    NOTES.forEach((item) => {
         item.style.display = 'none';
     })
 }
