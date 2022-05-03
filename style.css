@@ -23,6 +23,11 @@ input{
 .min{
     height: 30px;
     width: 30px;
+    border: none;
+}
+
+.min > .card-body {
+    display: none;
 }
 
 input:focus{

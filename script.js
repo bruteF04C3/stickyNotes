@@ -1,6 +1,8 @@
 // Author: bruteF04C3
 
-document.addEventListener('DOMContentLoaded', function() {
+let addedNotes = [];
+
+document.addEventListener('DOMContentLoaded', function () {
     initNoteArea();
 })
 
@@ -24,7 +26,7 @@ function getCursorCoords(event) {
 
 function constructCard(coords) {
     const CARD = `
-    <div class="card" id="_vstickynote${coords[1]}" onmouseleave="toggleStateToMin(this.id)">
+    <div class="card" id="_vstickynote${coords[1]}" onmouseleave="toggleState(this.id, 'min')" onmouseenter="toggleState(this.id, 'max')">
     <div class="card-body">
     <div class="card-title">
         Note
@@ -50,17 +52,28 @@ function showNotes(card) {
     MAIN.appendChild(card);
 }
 
-function toggleStateToMin(id) {
+function toggleState(id, stateTo) {
     const self = document.getElementById(id);
-    self.classList.add('min');
     const note = document.getElementById(`${id}inp`);
-    localStorage.setItem(`${id}`, note.value);
-    self.innerHTML = '';
+    let timeStamp = new Date();
+    if (stateTo === 'min') {
+        self.classList.add('min');
+        addedNotes.push(
+            {
+                [id]: note.value
+            }
+        )
+        localStorage.setItem(`addedNotes${timeStamp.getTime()}`, JSON.stringify(addedNotes));
+    } else {
+        self.classList.remove('min');
+        // retrieve selected value here
+    }
 }
 
-function hideAllNotes() {
-    const NOTES = document.querySelectorAll('.card');
-    NOTES.forEach((item) => {
-        item.style.display = 'none';
-    })
-}
+
+// function hideAllNotes() {
+//     const NOTES = document.querySelectorAll('.card');
+//     NOTES.forEach((item) => {
+//         item.style.display = 'none';
+//     })
+// }
