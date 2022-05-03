@@ -9,7 +9,7 @@ function initNoteArea() {
     const EXISTING_MARKUP = BODY.innerHTML;
     BODY.innerHTML = '';
     // onclick for testing only
-    BODY.innerHTML = `<div id="_vstickynotes-main" tabindex="-1" onclick="hideAllNotes()" oncontextmenu="getCursorCoords(event)">
+    BODY.innerHTML = `<div id="_vstickynotes-main" tabindex="-1" oncontextmenu="getCursorCoords(event)">
         ${EXISTING_MARKUP}
     </div>`;
 }
@@ -24,14 +24,13 @@ function getCursorCoords(event) {
 
 function constructCard(coords) {
     const CARD = `
-    <div class="card">
-    <div class="card-header">
-      Featured
-    </div>
+    <div class="card" id="_vstickynote${coords[1]}" onmouseleave="toggleStateToMin(this.id)">
     <div class="card-body">
-      <input type="text">
+    <div class="card-title">
+        Note
+      </div>
+      <input id="_vstickynote${coords[1]}inp" type="text">
     </div>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
     `
 
@@ -49,6 +48,14 @@ function showNotes(card) {
     const MAIN = document.getElementById('_vstickynotes-main');
 
     MAIN.appendChild(card);
+}
+
+function toggleStateToMin(id) {
+    const self = document.getElementById(id);
+    self.classList.add('min');
+    const note = document.getElementById(`${id}inp`);
+    localStorage.setItem(`${id}`, note.value);
+    self.innerHTML = '';
 }
 
 function hideAllNotes() {

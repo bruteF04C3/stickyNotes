@@ -7,4 +7,25 @@
 
 .card{
     position: absolute;
+    height: 120px;
+    width: auto;
+}
+
+.card-body{
+    border-left: 5px solid blue;
+}
+
+input{
+    border: none;
+    outline: none;
+}
+
+.min{
+    height: 30px;
+    width: 30px;
+}
+
+input:focus{
+    outline: none;
+    border: none;
 }
