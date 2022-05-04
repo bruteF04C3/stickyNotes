@@ -26,12 +26,12 @@ function getCursorCoords(event) {
 function constructCard(coords) {
     const alphaNum = Math.random().toString(36).substring(2, 8);
     const CARD = `
-    <div class="card" id="_vstickynote${coords[1]}${alphaNum}" onmouseleave="toggleState(this.id, 'min')" onmouseenter="toggleState(this.id, 'max')">
-    <div class="card-body">
-    <div class="card-title">
+    <div class="_vstickynotecard" id="_vstickynote${coords[1]}${alphaNum}" onmouseleave="toggleState(this.id, 'min')" onmouseenter="toggleState(this.id, 'max')">
+    <div class="_vstickynotecard-body">
+    <div class="_vstickynotecard-title">
         Note
       </div>
-      <input id="_vstickynote${coords[1]}inp" type="text">
+      <input id="_vstickynote${coords[1]}${alphaNum}inp" type="text">
     </div>
   </div>
     `
@@ -69,11 +69,3 @@ function toggleState(id, stateTo) {
         // retrieve selected value here
     }
 }
-
-
-// function hideAllNotes() {
-//     const NOTES = document.querySelectorAll('.card');
-//     NOTES.forEach((item) => {
-//         item.style.display = 'none';
-//     })
-// }
