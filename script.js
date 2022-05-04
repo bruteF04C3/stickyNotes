@@ -4,6 +4,7 @@ let addedNotes = [];
 
 document.addEventListener('DOMContentLoaded', function () {
     initNoteArea();
+    initStyles();
 })
 
 function initNoteArea() {
@@ -11,19 +12,112 @@ function initNoteArea() {
     const EXISTING_MARKUP = BODY.innerHTML;
     BODY.innerHTML = '';
     // onclick for testing only
-    BODY.innerHTML = `<div id="_vstickynotes-main" tabindex="-1" oncontextmenu="getCursorCoords(event)">
+    BODY.innerHTML = `<div id="_vstickynotes-main" tabindex="-1" oncontextmenu="createNoteWithCoords(event)">
         ${EXISTING_MARKUP}
     </div>`;
 }
 
-function getCursorCoords(event) {
-    event.preventDefault();
-    const COORDS = [event.screenX, event.screenY]
-    // renderCard(coords)
-    constructCard(COORDS);
+function initStyles() {
+    const head = document.head;
+    let style;
+    let styleTagFound = head.getElementsByTagName('style');
+    console.log(styleTagFound);
+    if (styleTagFound.length) {
+        style = head.getElementsByTagName('style')[0];
+        style.textContent += `
+        ._vstickynotecard{
+            position: absolute;
+            height: 120px;
+            width: auto;
+            background-color: #fff;
+            padding: 15px;
+            z-index: 21001;
+        }
+        
+        ._vstickynotecard-body{
+            border-left: 5px solid blue;
+            height: 100%;
+        }
+        
+        input{
+            border: none;
+            outline: none;
+        }
+        
+        .min{
+            height: 30px;
+            width: 30px;
+            border: 1px solid blue;
+            z-index: 21000;
+            transform: skew(15deg);
+            border-radius: 3px;
+            box-shadow: 2px 4px 8px rgb(150, 150, 150);
+            padding: 0;
+        }
+        
+        .min > ._vstickynotecard-body {
+            display: none;
+        }
+        
+        input:focus{
+            outline: none;
+            border: none;
+        }
+        `;
+    } else {
+        console.log('no style tag, nvm, creating one rn !')
+        style = document.createElement('style');
+        style.textContent = `
+        ._vstickynotecard{
+            position: absolute;
+            height: 120px;
+            width: auto;
+            background-color: #fff;
+            padding: 15px;
+            z-index: 21001;
+        }
+        
+        ._vstickynotecard-body{
+            border-left: 5px solid blue;
+            height: 100%;
+        }
+        
+        input{
+            border: none;
+            outline: none;
+        }
+        
+        .min{
+            height: 30px;
+            width: 30px;
+            border: 1px solid blue;
+            z-index: 21000;
+            transform: skew(15deg);
+            border-radius: 3px;
+            box-shadow: 2px 4px 8px rgb(150, 150, 150);
+            padding: 0;
+        }
+        
+        .min > ._vstickynotecard-body {
+            display: none;
+        }
+        
+        input:focus{
+            outline: none;
+            border: none;
+        }
+        `
+        head.appendChild(style);
+    }
 }
 
-function constructCard(coords) {
+function createNoteWithCoords(event) {
+    event.preventDefault();
+    const COORDS = [event.screenX, event.screenY]
+    constructNote(COORDS);
+}
+
+function constructNote(coords) {
     const alphaNum = Math.random().toString(36).substring(2, 8);
     const CARD = `
     <div class="_vstickynotecard" id="_vstickynote${coords[1]}${alphaNum}" onmouseleave="toggleState(this.id, 'min')" onmouseenter="toggleState(this.id, 'max')">
@@ -43,12 +137,11 @@ function constructCard(coords) {
 
     cardFragment.firstElementChild.style.top = `${coords[1] - 80}px`;
     cardFragment.firstElementChild.style.left = `${coords[0] - 10}px`
-    showNotes(cardFragment);
+    showNote(cardFragment);
 }
 
-function showNotes(card) {
+function showNote(card) {
     const MAIN = document.getElementById('_vstickynotes-main');
-
     MAIN.appendChild(card);
 }
 
