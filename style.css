@@ -23,7 +23,7 @@ input{
 .min{
     height: 30px;
     width: 30px;
-    border: none;
+    border: 1px solid blue;
 }
 
 .min > .card-body {

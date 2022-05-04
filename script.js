@@ -21,12 +21,12 @@ function getCursorCoords(event) {
     const COORDS = [event.screenX, event.screenY]
     // renderCard(coords)
     constructCard(COORDS);
-
 }
 
 function constructCard(coords) {
+    const alphaNum = Math.random().toString(36).substring(2, 8);
     const CARD = `
-    <div class="card" id="_vstickynote${coords[1]}" onmouseleave="toggleState(this.id, 'min')" onmouseenter="toggleState(this.id, 'max')">
+    <div class="card" id="_vstickynote${coords[1]}${alphaNum}" onmouseleave="toggleState(this.id, 'min')" onmouseenter="toggleState(this.id, 'max')">
     <div class="card-body">
     <div class="card-title">
         Note
