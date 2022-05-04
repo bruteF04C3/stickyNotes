@@ -31,7 +31,7 @@ function constructCard(coords) {
     <div class="card-title">
         Note
       </div>
-      <input id="_vstickynote${coords[1]}inp" type="text">
+      <input id="_vstickynote${coords[1]}${alphaNum}inp" type="text">
     </div>
   </div>
     `

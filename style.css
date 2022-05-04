@@ -1,18 +1,13 @@
-#main {
-    height: 100%;
-    width: 100%;
-    z-index: 40000;
-    position: relative;
-}
-
 .card{
     position: absolute;
     height: 120px;
     width: auto;
+    z-index: 32000;
 }
 
 .card-body{
     border-left: 5px solid blue;
+    z-index: 21001;
 }
 
 input{
@@ -24,6 +19,7 @@ input{
     height: 30px;
     width: 30px;
     border: 1px solid blue;
+    z-index: 21000;
 }
 
 .min > .card-body {
