@@ -20,6 +20,9 @@ input{
     width: 30px;
     border: 1px solid blue;
     z-index: 21000;
+    transform: skew(15deg);
+    border-radius: 3px;
+    box-shadow: 2px 4px 8px rgb(150, 150, 150);
 }
 
 .min > .card-body {
