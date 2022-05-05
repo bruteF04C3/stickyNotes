@@ -24,91 +24,12 @@ function initStyles() {
     console.log(styleTagFound);
     if (styleTagFound.length) {
         style = head.getElementsByTagName('style')[0];
-        style.textContent += `
-        ._vstickynotecard{
-            position: absolute;
-            height: 120px;
-            width: auto;
-            background-color: #fff;
-            padding: 15px;
-            z-index: 21001;
-        }
-        
-        ._vstickynotecard-body{
-            border-left: 5px solid blue;
-            height: 100%;
-        }
-        
-        input{
-            border: none;
-            outline: none;
-        }
-        
-        .min{
-            height: 30px;
-            width: 30px;
-            border: 1px solid blue;
-            z-index: 21000;
-            transform: skew(15deg);
-            border-radius: 3px;
-            box-shadow: 2px 4px 8px rgb(150, 150, 150);
-            padding: 0;
-        }
-        
-        .min > ._vstickynotecard-body {
-            display: none;
-        }
-        
-        input:focus{
-            outline: none;
-            border: none;
-        }
-        `;
     } else {
         console.log('no style tag, nvm, creating one rn !')
         style = document.createElement('style');
-        style.textContent = `
-        ._vstickynotecard{
-            position: absolute;
-            height: 120px;
-            width: auto;
-            background-color: #fff;
-            padding: 15px;
-            z-index: 21001;
-        }
-        
-        ._vstickynotecard-body{
-            border-left: 5px solid blue;
-            height: 100%;
-        }
-        
-        input{
-            border: none;
-            outline: none;
-        }
-        
-        .min{
-            height: 30px;
-            width: 30px;
-            border: 1px solid blue;
-            z-index: 21000;
-            transform: skew(15deg);
-            border-radius: 3px;
-            box-shadow: 2px 4px 8px rgb(150, 150, 150);
-            padding: 0;
-        }
-        
-        .min > ._vstickynotecard-body {
-            display: none;
-        }
-        
-        input:focus{
-            outline: none;
-            border: none;
-        }
-        `
         head.appendChild(style);
     }
+    setStyle(style);
 }
 
 function createNoteWithCoords(event) {
@@ -161,4 +82,49 @@ function toggleState(id, stateTo) {
         self.classList.remove('min');
         // retrieve selected value here
     }
+}
+
+function setStyle(entryPoint) {
+    entryPoint.textContent += `
+        ._vstickynotecard{
+            position: absolute;
+            height: 120px;
+            width: auto;
+            background-color: #fff;
+            padding: 15px;
+            z-index: 21001;
+        }
+        
+        ._vstickynotecard-body{
+            border-left: 5px solid blue;
+            height: 100%;
+        }
+        
+        input{
+            border: none;
+            outline: none;
+        }
+        
+        .min{
+            height: 30px;
+            width: 30px;
+            border: 1px solid blue;
+            z-index: 21000;
+            transform: skew(15deg);
+            border-radius: 3px;
+            box-shadow: 2px 4px 8px rgb(150, 150, 150);
+            padding: 0;
+        }
+        
+        .min > ._vstickynotecard-body {
+            display: none;
+        }
+        
+        input:focus{
+            outline: none;
+            border: none;
+        }
+        `;
+    
+    return entryPoint;
 }
