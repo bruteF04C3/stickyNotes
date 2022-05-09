@@ -46,18 +46,19 @@ function constructNote(coords) {
     <div class="_vstickynotecard-title">
         Note
       </div>
-      <input id="_vstickynote${coords[1]}${alphaNum}inp" type="text">
+      <textarea id="_vstickynote${coords[1]}${alphaNum}inp" rows="5" style="border: none; outline: none;">
+        </textarea>
     </div>
   </div>
     `
     let html = document.getElementsByTagName('html')[0];
-    console.log('scrolled Top by', html.scrollTop);
+    
     let cardFragment = document.createRange().createContextualFragment(CARD);
 
     // DOM Parser , todo
     // let cardFragment = new DOMParser().parseFromString(CARD, 'text/html');
     cardFragment.firstElementChild.style.top = `${(coords[1] + html.scrollTop) - 80}px`;
-    console.log(cardFragment.firstElementChild.style.top);
+    
     cardFragment.firstElementChild.style.left = `${coords[0] - 10}px`
     showNote(cardFragment);
 }
@@ -94,10 +95,11 @@ function setStyle(entryPoint) {
             background-color: #fff;
             padding: 15px;
             z-index: 21001;
+            border-radius: 10px;
+            transition: all 0.3s linear;
         }
         
         ._vstickynotecard-body{
-            border-left: 5px solid blue;
             height: 100%;
         }
         
@@ -112,9 +114,10 @@ function setStyle(entryPoint) {
             border: 1px solid blue;
             z-index: 21000;
             transform: skew(15deg);
-            border-radius: 3px;
+            border-radius: 5px;
             box-shadow: 2px 4px 8px rgb(150, 150, 150);
             padding: 0;
+            transition: all 0.3s linear;
         }
         
         .min > ._vstickynotecard-body {
