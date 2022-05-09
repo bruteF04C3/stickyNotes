@@ -113,11 +113,12 @@ function setStyle(entryPoint) {
             width: 30px;
             border: 1px solid blue;
             z-index: 21000;
-            transform: skew(15deg);
             border-radius: 5px;
-            box-shadow: 2px 4px 8px rgb(150, 150, 150);
+            box-shadow: 0 4px 8px 0 rgb(150, 150, 150);
             padding: 0;
             transition: all 0.3s linear;
+            transform: skewY(1deg);
+            border-radius: 100% 0% 67% 33% / 0% 96% 4% 100% 
         }
         
         .min > ._vstickynotecard-body {
