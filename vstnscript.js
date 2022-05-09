@@ -50,13 +50,14 @@ function constructNote(coords) {
     </div>
   </div>
     `
-
+    let html = document.getElementsByTagName('html')[0];
+    console.log('scrolled Top by', html.scrollTop);
     let cardFragment = document.createRange().createContextualFragment(CARD);
 
     // DOM Parser , todo
     // let cardFragment = new DOMParser().parseFromString(CARD, 'text/html');
-
-    cardFragment.firstElementChild.style.top = `${coords[1] - 80}px`;
+    cardFragment.firstElementChild.style.top = `${(coords[1] + html.scrollTop) - 80}px`;
+    console.log(cardFragment.firstElementChild.style.top);
     cardFragment.firstElementChild.style.left = `${coords[0] - 10}px`
     showNote(cardFragment);
 }
