@@ -19,9 +19,12 @@ function initNoteArea() {
 
 function initStyles() {
     const head = document.head;
+    let fontLink = document.createElement('link');
+    fontLink.setAttribute('rel', 'stylesheet');
+    fontLink.setAttribute('href', 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Kalam:wght@300&display=swap" rel="stylesheet');
+    head.appendChild(fontLink);
     let style;
     let styleTagFound = head.getElementsByTagName('style');
-    console.log(styleTagFound);
     if (styleTagFound.length) {
         style = head.getElementsByTagName('style')[0];
     } else {
@@ -46,7 +49,7 @@ function constructNote(coords) {
     <div class="_vstickynotecard-title">
         Note
       </div>
-      <textarea id="_vstickynote${coords[1]}${alphaNum}inp" rows="5" style="border: none; outline: none;">
+      <textarea id="_vstickynote${coords[1]}${alphaNum}inp" rows="5" style="border: none; outline: none; font-family: 'Kalam', cursive;">
         </textarea>
     </div>
   </div>
